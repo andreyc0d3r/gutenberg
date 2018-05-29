@@ -63,8 +63,8 @@
 
 		// use smaller space for hovering/selecting/dragging on child blocks
 		.editor-block-list__layout & {
-			left: -$block-side-ui-width;
-			right: -$block-side-ui-width;
+			left: 0;
+			right: 0;
 		}
 
 		// Full width blocks don't have the place to expand on the side
@@ -81,10 +81,12 @@
 
 
 // Allow Drag & Drop when clicking on the empty area of the mover and the settings menu
-.editor-block-list__block .editor-block-mover,
-.editor-block-list__block .editor-block-settings-menu {
+.editor-block-list__layout .editor-block-list__block .editor-block-mover,
+.editor-block-list__layout .editor-block-list__block .editor-block-settings-menu {
 	pointer-events: none;
 
+	// Nested blocks don't have any side affordance for drag and drop
+	.editor-block-list__layout &,
 	> * {
 		pointer-events: auto;
 	}
@@ -494,8 +496,9 @@
 	> .editor-block-mover {
 		position: absolute;
 		top: 0;
-		min-height: 50%; // stretch to fill half of the available space to increase hoverable area
 		width: $block-side-ui-width + $block-side-ui-clearance;
+		height: 100%; // stretch to fill half of the available space to increase hoverable area
+		max-height: $block-side-ui-width * 4; // stretch to fill half of the available space to increase hoverable area
 
 		/* Necessary for drag indicator */
 		cursor: move;/* Fallback for IE/Edge < 14 */
