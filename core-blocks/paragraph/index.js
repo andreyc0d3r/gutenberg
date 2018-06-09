@@ -117,7 +117,7 @@ class ParagraphBlock extends Component {
 		}
 
 		if ( customFontSize ) {
-			return customFontSize;
+                        return customFontSize;
 		}
 	}
 
